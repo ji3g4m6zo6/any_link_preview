@@ -69,6 +69,8 @@ class AnyLinkPreview extends StatefulWidget {
   /// Customize body `TextStyle`
   final TextStyle titleStyle;
 
+  final TextStyle timeStyle;
+
   /// Customize body `TextStyle`
   final TextStyle bodyStyle;
 
@@ -83,6 +85,7 @@ class AnyLinkPreview extends StatefulWidget {
     this.onTap,
     this.cache = const Duration(days: 30),
     this.titleStyle,
+    this.timeStyle,
     this.bodyStyle,
     this.displayDirection = UIDirection.UIDirectionVertical,
     this.showMultimedia = true,
@@ -187,6 +190,7 @@ class _AnyLinkPreviewState extends State<AnyLinkPreview> {
               imageUri: image,
               onTap: widget.onTap ?? _launchURL,
               titleTextStyle: widget.titleStyle,
+              timeTextStyle: widget.timeStyle,
               bodyTextStyle: widget.bodyStyle,
               bodyTextOverflow: widget.bodyTextOverflow,
               bodyMaxLines: widget.bodyMaxLines,
@@ -202,6 +206,7 @@ class _AnyLinkPreviewState extends State<AnyLinkPreview> {
               imageUri: image,
               onTap: widget.onTap ?? _launchURL,
               titleTextStyle: widget.titleStyle,
+              timeTextStyle: widget.timeStyle,
               bodyTextStyle: widget.bodyStyle,
               bodyTextOverflow: widget.bodyTextOverflow,
               bodyMaxLines: widget.bodyMaxLines,
