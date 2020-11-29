@@ -22,6 +22,8 @@ class AnyLinkPreview extends StatefulWidget {
   /// For Android, all url's are supported
   final String link;
 
+  final String customTitle;
+
   /// Customize background colour
   /// Deaults to `Color.fromRGBO(235, 235, 235, 1)`
   final Color backgroundColor;
@@ -74,6 +76,7 @@ class AnyLinkPreview extends StatefulWidget {
   AnyLinkPreview({
     this.key,
     @required this.link,
+    this.customTitle,
     this.cache = const Duration(days: 30),
     this.titleStyle,
     this.bodyStyle,
@@ -174,7 +177,7 @@ class _AnyLinkPreviewState extends State<AnyLinkPreview> {
           ? LinkViewHorizontal(
               key: widget.key,
               url: widget.link,
-              title: title,
+              title: widget.customTitle ?? title,
               description: desc,
               imageUri: image,
               onTap: _launchURL,
@@ -188,7 +191,7 @@ class _AnyLinkPreviewState extends State<AnyLinkPreview> {
           : LinkViewVertical(
               key: widget.key,
               url: widget.link,
-              title: title,
+              title: widget.customTitle ?? title,
               description: desc,
               imageUri: image,
               onTap: _launchURL,
@@ -246,7 +249,9 @@ class _AnyLinkPreviewState extends State<AnyLinkPreview> {
                 : _errorBody,
             image: WebAnalyzer.isNotEmpty(info.image)
                 ? info.image
-                : WebAnalyzer.isNotEmpty(info.icon) ? info.icon : _errorImage,
+                : WebAnalyzer.isNotEmpty(info.icon)
+                    ? info.icon
+                    : _errorImage,
             isIcon: WebAnalyzer.isNotEmpty(info.image) ? false : true,
           );
   }
