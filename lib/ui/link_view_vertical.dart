@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class LinkViewVertical extends StatelessWidget {
   final String url;
   final String title;
+  final String time;
   final String description;
   final String imageUri;
   final Function(String) onTap;
   final TextStyle titleTextStyle;
+  final TextStyle timeTextStyle;
   final TextStyle bodyTextStyle;
   final bool showMultiMedia;
   final TextOverflow bodyTextOverflow;
@@ -17,10 +19,12 @@ class LinkViewVertical extends StatelessWidget {
     Key key,
     @required this.url,
     @required this.title,
+    @required this.time,
     @required this.description,
     @required this.imageUri,
     @required this.onTap,
     this.titleTextStyle,
+    this.timeTextStyle,
     this.bodyTextStyle,
     this.showMultiMedia,
     this.bodyTextOverflow,
@@ -61,6 +65,12 @@ class LinkViewVertical extends StatelessWidget {
             color: Colors.black,
             fontWeight: FontWeight.bold,
           );
+
+      var _timeTS = timeTextStyle ??
+          TextStyle(
+            fontSize: computeTitleFontSize(layoutHeight) - 1,
+          );
+
       var _bodyTS = bodyTextStyle ??
           TextStyle(
             fontSize: computeTitleFontSize(layoutHeight) - 1,
@@ -95,6 +105,7 @@ class LinkViewVertical extends StatelessWidget {
                   : SizedBox(height: 5),
               _buildTitleContainer(
                   _titleTS, computeTitleLines(layoutHeight, layoutWidth)),
+              _buildTimeContainer(_timeTS),
               _buildBodyContainer(_bodyTS, computeBodyLines(layoutHeight)),
             ],
           ));
@@ -114,6 +125,29 @@ class LinkViewVertical extends StatelessWidget {
               style: _titleTS,
               overflow: TextOverflow.ellipsis,
               maxLines: _maxLines,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTimeContainer(TextStyle _timeTS) {
+    if (time == null) {
+      return Container();
+    }
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(10, 3, 2, 1),
+      child: Container(
+        alignment: Alignment(-1.0, -1.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              time,
+              style: _timeTS,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
             ),
           ],
         ),

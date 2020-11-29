@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class LinkViewHorizontal extends StatelessWidget {
   final String url;
   final String title;
+  final String time;
   final String description;
   final String imageUri;
   final Function(String) onTap;
   final TextStyle titleTextStyle;
+  final TextStyle timeTextStyle;
   final TextStyle bodyTextStyle;
   final bool showMultiMedia;
   final TextOverflow bodyTextOverflow;
@@ -17,10 +19,12 @@ class LinkViewHorizontal extends StatelessWidget {
     Key key,
     @required this.url,
     @required this.title,
+    @required this.time,
     @required this.description,
     @required this.imageUri,
     @required this.onTap,
     this.titleTextStyle,
+    this.timeTextStyle,
     this.bodyTextStyle,
     this.showMultiMedia,
     this.bodyTextOverflow,
@@ -66,6 +70,10 @@ class LinkViewHorizontal extends StatelessWidget {
               color: Colors.black,
               fontWeight: FontWeight.bold,
             );
+        var _timeFontSize = timeTextStyle ??
+            TextStyle(
+              fontSize: computeTitleFontSize(layoutWidth) - 1,
+            );
         var _bodyFontSize = bodyTextStyle ??
             TextStyle(
               fontSize: computeTitleFontSize(layoutWidth) - 1,
@@ -106,6 +114,7 @@ class LinkViewHorizontal extends StatelessWidget {
                     children: <Widget>[
                       _buildTitleContainer(
                           _titleFontSize, computeTitleLines(layoutHeight)),
+                      _buildTimeContainer(_timeFontSize),
                       _buildBodyContainer(
                           _bodyFontSize, computeBodyLines(layoutHeight))
                     ],
@@ -131,6 +140,28 @@ class LinkViewHorizontal extends StatelessWidget {
               style: _titleTS,
               overflow: TextOverflow.ellipsis,
               maxLines: _maxLines,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTimeContainer(TextStyle _titleTS) {
+    if (time == null) {
+      return Container();
+    }
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(4, 2, 3, 1),
+      child: Column(
+        children: <Widget>[
+          Container(
+            alignment: Alignment(-1.0, -1.0),
+            child: Text(
+              time,
+              style: _titleTS,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
             ),
           ),
         ],

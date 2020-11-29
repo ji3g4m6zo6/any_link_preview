@@ -22,6 +22,7 @@ class AnyLinkPreview extends StatefulWidget {
   /// For Android, all url's are supported
   final String link;
 
+  final String time;
   final String customTitle;
   final Function(String) onTap;
 
@@ -77,6 +78,7 @@ class AnyLinkPreview extends StatefulWidget {
   AnyLinkPreview({
     this.key,
     @required this.link,
+    this.time,
     this.customTitle,
     this.onTap,
     this.cache = const Duration(days: 30),
@@ -179,6 +181,7 @@ class _AnyLinkPreviewState extends State<AnyLinkPreview> {
           ? LinkViewHorizontal(
               key: widget.key,
               url: widget.link,
+              time: widget.time,
               title: widget.customTitle ?? title,
               description: desc,
               imageUri: image,
@@ -193,6 +196,7 @@ class _AnyLinkPreviewState extends State<AnyLinkPreview> {
           : LinkViewVertical(
               key: widget.key,
               url: widget.link,
+              time: widget.time,
               title: widget.customTitle ?? title,
               description: desc,
               imageUri: image,

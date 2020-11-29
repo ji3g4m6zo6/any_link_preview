@@ -34,6 +34,7 @@ class _MyAppState extends State<MyApp> {
             children: [
               AnyLinkPreview(
                 link: _url1,
+                time: '2 mins ago.',
                 displayDirection: UIDirection.UIDirectionHorizontal,
                 cache: Duration(hours: 1),
                 backgroundColor: Colors.grey[300],
@@ -46,6 +47,7 @@ class _MyAppState extends State<MyApp> {
               SizedBox(height: 25),
               AnyLinkPreview(
                 link: _url2,
+                time: '2 mins ago.',
                 displayDirection: UIDirection.UIDirectionHorizontal,
                 showMultimedia: false,
                 bodyMaxLines: 5,
@@ -61,11 +63,15 @@ class _MyAppState extends State<MyApp> {
               AnyLinkPreview(
                 displayDirection: UIDirection.UIDirectionHorizontal,
                 link: _url3,
+                time: '2 mins ago.',
                 errorBody: 'Show my custom error body',
                 errorTitle: 'Next one is youtube link, error title',
               ),
               SizedBox(height: 25),
-              AnyLinkPreview(link: _url4),
+              AnyLinkPreview(
+                link: _url4,
+                time: '2 mins ago.',
+              ),
             ],
           ),
         ),
