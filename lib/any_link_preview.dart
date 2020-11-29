@@ -23,6 +23,7 @@ class AnyLinkPreview extends StatefulWidget {
   final String link;
 
   final String customTitle;
+  final Function(String) onTap;
 
   /// Customize background colour
   /// Deaults to `Color.fromRGBO(235, 235, 235, 1)`
@@ -77,6 +78,7 @@ class AnyLinkPreview extends StatefulWidget {
     this.key,
     @required this.link,
     this.customTitle,
+    this.onTap,
     this.cache = const Duration(days: 30),
     this.titleStyle,
     this.bodyStyle,
@@ -180,7 +182,7 @@ class _AnyLinkPreviewState extends State<AnyLinkPreview> {
               title: widget.customTitle ?? title,
               description: desc,
               imageUri: image,
-              onTap: _launchURL,
+              onTap: widget.onTap ?? _launchURL,
               titleTextStyle: widget.titleStyle,
               bodyTextStyle: widget.bodyStyle,
               bodyTextOverflow: widget.bodyTextOverflow,
@@ -194,7 +196,7 @@ class _AnyLinkPreviewState extends State<AnyLinkPreview> {
               title: widget.customTitle ?? title,
               description: desc,
               imageUri: image,
-              onTap: _launchURL,
+              onTap: widget.onTap ?? _launchURL,
               titleTextStyle: widget.titleStyle,
               bodyTextStyle: widget.bodyStyle,
               bodyTextOverflow: widget.bodyTextOverflow,
