@@ -232,7 +232,7 @@ class _AnyLinkPreviewState extends State<AnyLinkPreview> {
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
-              color: Colors.grey[200],
+              color: widget.backgroundColor ?? Colors.grey[200],
             ),
             alignment: Alignment.center,
             child: Text('Fetching data...'),

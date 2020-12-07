@@ -83,25 +83,37 @@ class LinkViewVertical extends StatelessWidget {
           child: Column(
             children: <Widget>[
               showMultiMedia
-                  ? Expanded(
-                      flex: 2,
-                      child: imageUri == ""
-                          ? Container(color: Colors.grey)
-                          : Container(
-                              padding: EdgeInsets.only(bottom: 15.0),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(12.0),
-                                  topRight: Radius.circular(12.0),
-                                ),
-                                image: DecorationImage(
-                                  image: NetworkImage(imageUri),
-                                  fit:
-                                      isIcon ? BoxFit.contain : BoxFit.fitWidth,
-                                ),
-                              ),
-                            ),
+                  ? Container(
+                      width: double.maxFinite,
+                      height: 200.0,
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(5.0)),
+                        image: DecorationImage(
+                          image: NetworkImage(imageUri),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     )
+                  // ? Expanded(
+                  //     flex: 2,
+                  //     child: imageUri == ""
+                  //         ? Container(color: Colors.grey)
+                  //         : Container(
+                  //             padding: EdgeInsets.only(bottom: 15.0),
+                  //             decoration: BoxDecoration(
+                  //               borderRadius: BorderRadius.only(
+                  //                 topLeft: Radius.circular(12.0),
+                  //                 topRight: Radius.circular(12.0),
+                  //               ),
+                  //               image: DecorationImage(
+                  //                 image: NetworkImage(imageUri),
+                  //                 fit:
+                  //                     isIcon ? BoxFit.contain : BoxFit.fitWidth,
+                  //               ),
+                  //             ),
+                  //           ),
+                  //   )
                   : SizedBox(height: 5),
               _buildTitleContainer(
                   _titleTS, computeTitleLines(layoutHeight, layoutWidth)),
